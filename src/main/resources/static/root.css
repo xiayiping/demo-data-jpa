@@ -1,0 +1,76 @@
+:root {
+    --color-dark-blue: oklch(35% 0.12 265);
+    --color-blue: oklch(45% 0.22 265);
+    --color-light-blue: oklch(55% 0.22 265);
+    --color-khaki: oklch(72% 0.05 85);
+    --color-khaki-light: oklch(80% 0.06 82);
+    --color-khaki-warm: oklch(76% 0.06 80);
+
+    /* 主页面背景 用于整个页面的大底色，避免纯白太生硬。 */
+    --color-page-bg: oklch(97% 0.015 95);
+    /* 次级背景 用于内容区、分组容器、区块过渡。 */
+    --color-surface: oklch(94% 0.02 88);
+    /* 用于主内容卡片或输入区。*/
+    --color-panel: oklch(99% 0.005 90);
+
+
+    /* 正文主文字 */
+    --color-text-primary: oklch(24% 0.03 255);
+    /* 次级文字 */
+    --color-text-secondary: oklch(45% 0.025 250);
+    /* 弱化说明文字 */
+    --color-text-muted: oklch(62% 0.02 240);
+    /* 深蓝背景上的文字 */
+    --color-text-on-dark: oklch(96% 0.01 95);
+
+    /* 边框 分割线*/
+    --color-border: oklch(88% 0.012 90);
+    --color-divider: oklch(84% 0.015 85);
+
+    /* 各区域 */
+    --color-title-bg: oklch(98% 0.01 92);
+    --color-title-border: oklch(86% 0.015 88);
+
+    --color-main-bg: oklch(99% 0.005 90);
+    --color-main-bg-minor: oklch(97% 0.01 90);
+
+    --color-footer-bg: oklch(92% 0.025 82);
+    --color-footer-border: oklch(82% 0.02 80);
+
+
+
+    /* 搭配色 */
+    /* A */
+    --color-blue-soft: oklch(68% 0.05 245);
+    --color-blue-pale: oklch(90% 0.02 240);
+
+    /* B */
+    --color-sage: oklch(78% 0.04 145);
+    --color-sage-deep: oklch(58% 0.05 150);
+    --color-sage-pale: oklch(93% 0.015 145);
+
+    /* C */
+    --color-terra: oklch(68% 0.11 45);
+    --color-terra-soft: oklch(82% 0.05 50);
+
+    /* D */
+    --color-wine-brown: oklch(42% 0.08 20);
+    --color-wine-soft: oklch(84% 0.025 30);
+
+    --color-alert: oklch(50% 0.2 20);
+    --color-warn: oklch(75% 0.2 65);
+    --color-mid: oklch(60% 0.2 150);
+    --color-low: oklch(50% 0.2 250);
+    --color-lowest: oklch(75% 0.0 250);
+
+
+
+
+    --content-padding: 0.4rem;
+    --content-padding-wide: 0.8rem;
+    --title-height: 2.8rem;
+    --card-title-height: 2.2rem;
+    --footer-height: 2.2rem;
+    --tag-radius: 0.8rem;
+
+}

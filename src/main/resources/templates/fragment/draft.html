@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>todo-app</title>
+    <link rel="stylesheet" th:href="@{/root.css}">
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+<div th:fragment="draft" class="draft">
+    <div>
+        Draft List
+    </div>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Title</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    Title1
+                    <div>
+                        <span class="card-content-item-meta-item p-highest">Highest</span>
+                        <span class="card-content-item-meta-item tag-alert">Start: 2026-06-30</span>
+                        <span class="card-content-item-meta-item tag-warn">Due: 2026-06-30</span>
+                    </div>
+                </td>
+                <td>
+                    <a class="content-button">view</a>
+                    <a class="content-button">start</a>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    Title2
+                    <div>
+                        <span class="card-content-item-meta-item p-highest">Highest</span>
+                        <span class="card-content-item-meta-item tag-alert">Start: 2026-06-30</span>
+                        <span class="card-content-item-meta-item tag-warn">Due: 2026-06-30</span>
+                    </div>
+                </td>
+                <td>
+                    <a class="content-button">view</a>
+                    <a class="content-button">publish</a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>

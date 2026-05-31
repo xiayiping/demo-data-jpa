@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>todo-app</title>
+    <link rel="stylesheet" th:href="@{/root.css}">
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+<div id="root">
+    <div id="title">
+        <div style="display: inline-block" th:text="${view.page.nav}"></div>
+        <a class="button" th:href="@{/ui/form}">New</a>
+    </div>
+    <div id="major">
+        <div th:replace="~{fragment/nav :: navigation}"></div>
+        <main th:if="${view.page.nav == 'progress'}" >
+            <div th:replace="~{fragment/progress :: progress}"></div>
+        </main>
+        <main th:if="${view.page.nav == 'draft'}" >
+            <div th:replace="~{fragment/draft :: draft}"></div>
+        </main>
+        <main th:if="${view.page.nav == 'form'}" >
+            <div th:replace="~{fragment/form :: form}"></div>
+        </main>
+    </div>
+    <!--    <footer>footer</footer>-->
+</div>
+</body>
+</html>

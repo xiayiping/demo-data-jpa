@@ -2,7 +2,7 @@ package org.xyp.project.todoapp.person;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.*;
-import org.xyp.project.todoapp.infra.txop.TransactionalOp;
+import org.xyp.project.todoapp.core.txop.TransactionalOp;
 
 import java.util.Objects;
 

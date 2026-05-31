@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>todo-app</title>
+    <link rel="stylesheet" th:href="@{/root.css}">
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+<div th:fragment="form" class="form">
+    <form style="padding: 0 1rem" method="post" th:action="@{/ui/tasks}" >
+        <div class="form-item">
+            <div>
+                <label for="startAt">Start At</label>
+            </div>
+            <div>
+                <input type="date" name="startAt" id="startAt" />
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div>
+                <label for="dueAt">Due At</label>
+            </div>
+            <div>
+                <input type="date" name="dueAt" id="dueAt" />
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div>
+                <label for="priority">Priority</label>
+            </div>
+            <div>
+                <select name="priority" id="priority">
+                    <option value="HIGHEST">Highest</option>
+                    <option value="HIGH">High</option>
+                    <option value="MEDIUM" selected>Medium</option>
+                    <option value="LOW">Low</option>
+                    <option value="LOWEST">Lowest</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div>
+                <label for="title">Title</label>
+            </div>
+            <div>
+                <input type="text" name="title" id="title" placeholder="Title"/>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <div>
+                <label for="content">Content</label>
+            </div>
+            <div>
+            <textarea name="content" id="content" cols="100" rows="50"
+                      placeholder="Content"></textarea>
+            </div>
+        </div>
+
+        <div class="form-item">
+            <input type="submit" value="Submit"/>
+        </div>
+
+    </form>
+</div>
+</body>
+</html>

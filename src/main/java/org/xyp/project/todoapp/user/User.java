@@ -3,7 +3,7 @@ package org.xyp.project.todoapp.user;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.Data;
-import org.xyp.project.todoapp.shared.enums.ActiveStatus;
+import org.xyp.project.todoapp.core.enums.ActiveStatus;
 
 import java.util.Collection;
 import java.util.HashSet;

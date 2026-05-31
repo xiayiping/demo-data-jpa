@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>todo-app</title>
+    <link rel="stylesheet" th:href="@{/root.css}">
+    <link rel="stylesheet" th:href="@{/index.css}">
+</head>
+<body>
+<nav th:fragment="navigation">
+    <ul>
+        <!-- published progressing done -->
+        <li th:classappend="${view.page.nav == 'progress'} ? 'active'"><a th:href="@{/ui}">In Progress</a></li>
+        <li th:classappend="${view.page.nav == 'draft'} ? 'active'"><a th:href="@{/ui/draft}">Draft</a></li>
+        <li th:classappend="${view.page.nav == 'closed'} ? 'active'"><a th:href="@{/ui/closed}">Closed</a></li>
+    </ul>
+</nav>
+</body>
+</html>
