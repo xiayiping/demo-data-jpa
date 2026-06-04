@@ -15,10 +15,10 @@ class TransactionalOpImpl(val tx: RealTx) : TransactionalOp {
         val start = System.currentTimeMillis()
         try {
             val r = tx.doReturnInTx(supplier)
-            log.info("</transaction return> takes [{}]", (System.currentTimeMillis() - start))
+            log.info("</transaction return> takes [{} ms]", (System.currentTimeMillis() - start))
             return r
         } catch (ex: Exception) {
-            log.error("</transaction return error> takes [{}] {}", System.currentTimeMillis() - start, ex.message, ex)
+            log.error("</transaction return error> takes [{} ms] {}", System.currentTimeMillis() - start, ex.message, ex)
             throw ex
         }
     }
@@ -28,10 +28,10 @@ class TransactionalOpImpl(val tx: RealTx) : TransactionalOp {
         val start = System.currentTimeMillis()
         try {
             val r = tx.doReturnInNewTx(supplier)
-            log.info("</transaction return require-new> takes [{}]", System.currentTimeMillis() - start)
+            log.info("</transaction return require-new> takes [{} ms]", System.currentTimeMillis() - start)
             return r
         } catch (ex: Exception) {
-            log.error("</transaction return require-new error> takes [{}] {}",
+            log.error("</transaction return require-new error> takes [{} ms] {}",
                 System.currentTimeMillis() - start,
                 ex.message,
                 ex)
@@ -44,9 +44,9 @@ class TransactionalOpImpl(val tx: RealTx) : TransactionalOp {
         val start = System.currentTimeMillis()
         try {
             tx.doRunInTx(runner)
-            log.info("</transaction run> takes [{}]", System.currentTimeMillis() - start)
+            log.info("</transaction run> takes [{} ms]", System.currentTimeMillis() - start)
         } catch (ex: Exception) {
-            log.error("</transaction run error> takes [{}] {}", System.currentTimeMillis() - start, ex.message, ex)
+            log.error("</transaction run error> takes [{} ms] {}", System.currentTimeMillis() - start, ex.message, ex)
             throw ex
         }
     }
@@ -56,9 +56,9 @@ class TransactionalOpImpl(val tx: RealTx) : TransactionalOp {
         val start = System.currentTimeMillis()
         try {
             tx.doRunInNewTx(runner)
-            log.info("</transaction run require-new> takes [{}]", System.currentTimeMillis() - start)
+            log.info("</transaction run require-new> takes [{} ms]", System.currentTimeMillis() - start)
         } catch (ex: Exception) {
-            log.error("</transaction run require-new error> takes [{}] {}",
+            log.error("</transaction run require-new error> takes [{} ms] {}",
                 System.currentTimeMillis() - start,
                 ex.message,
                 ex)
