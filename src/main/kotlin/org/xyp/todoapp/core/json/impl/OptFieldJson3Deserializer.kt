@@ -1,7 +1,7 @@
-package org.xyp.todoapp.core.optfield.impl
+package org.xyp.todoapp.core.json.impl
 
 import org.springframework.boot.jackson.ObjectValueDeserializer
-import org.xyp.todoapp.core.optfield.OptField
+import org.xyp.todoapp.core.json.OptField
 import tools.jackson.core.JsonParser
 import tools.jackson.databind.BeanProperty
 import tools.jackson.databind.DeserializationContext

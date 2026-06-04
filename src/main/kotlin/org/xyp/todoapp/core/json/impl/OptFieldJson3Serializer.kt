@@ -1,7 +1,7 @@
-package org.xyp.todoapp.core.optfield.impl
+package org.xyp.todoapp.core.json.impl
 
-import org.xyp.todoapp.core.optfield.OptField
-import org.xyp.todoapp.core.optfield.impl.OptFieldJsonSerializer.Companion.logger
+import org.xyp.todoapp.core.json.OptField
+import org.xyp.todoapp.core.json.impl.OptFieldJsonSerializer.Companion.logger
 import tools.jackson.core.JsonGenerator
 import tools.jackson.databind.SerializationContext
 import tools.jackson.databind.ValueSerializer

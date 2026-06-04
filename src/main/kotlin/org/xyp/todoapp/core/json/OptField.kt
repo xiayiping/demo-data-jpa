@@ -1,4 +1,4 @@
-package org.xyp.todoapp.core.optfield
+package org.xyp.todoapp.core.json
 
 //@Serializable(with = OptFieldSerializer::class)
 data class OptField<T>(

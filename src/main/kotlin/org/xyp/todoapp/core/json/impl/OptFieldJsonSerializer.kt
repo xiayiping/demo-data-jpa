@@ -1,11 +1,11 @@
-package org.xyp.todoapp.core.optfield.impl
+package org.xyp.todoapp.core.json.impl
 
 import com.fasterxml.jackson.core.JsonGenerator
 import com.fasterxml.jackson.databind.JsonSerializer
 import com.fasterxml.jackson.databind.SerializerProvider
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
-import org.xyp.todoapp.core.optfield.OptField
+import org.xyp.todoapp.core.json.OptField
 
 class OptFieldJsonSerializer : JsonSerializer<OptField<*>>() {
     companion object {

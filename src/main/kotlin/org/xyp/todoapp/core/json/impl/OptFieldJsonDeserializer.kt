@@ -1,4 +1,4 @@
-package org.xyp.todoapp.core.optfield.impl
+package org.xyp.todoapp.core.json.impl
 
 import com.fasterxml.jackson.core.JsonParser
 import com.fasterxml.jackson.databind.BeanProperty
@@ -6,7 +6,7 @@ import com.fasterxml.jackson.databind.DeserializationContext
 import com.fasterxml.jackson.databind.JavaType
 import com.fasterxml.jackson.databind.JsonDeserializer
 import com.fasterxml.jackson.databind.deser.ContextualDeserializer
-import org.xyp.todoapp.core.optfield.OptField
+import org.xyp.todoapp.core.json.OptField
 
 class OptFieldJsonDeserializer() : JsonDeserializer<OptField<*>>(), ContextualDeserializer {
     lateinit var valueType: JavaType

@@ -2,13 +2,14 @@ package org.xyp.todoapp.app.resp;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import org.springframework.security.access.prepost.PostAuthorize;
 import org.xyp.todoapp.core.enums.ActiveStatus;
-import org.xyp.todoapp.core.optfield.OptField;
+import org.xyp.todoapp.core.json.OptField;
 import org.xyp.todoapp.domain.user.UserId;
 
 import java.time.LocalDateTime;
 
-public class UserDto {
+public class UserDtoJava {
     UserId id;
     String username;
     String password;
@@ -17,9 +18,9 @@ public class UserDto {
     ActiveStatus activeStatus;
 
     @JsonInclude(JsonInclude.Include.NON_EMPTY)
-    OptField<UserDto> friend;
+    OptField<UserDtoJava> friend;
 
-    public UserDto(UserId id, String username, String password) {
+    public UserDtoJava(UserId id, String username, String password) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -43,7 +44,12 @@ public class UserDto {
         this.username = username;
     }
 
+    @PostAuthorize("hasAuthority('ROLE_USEReeee')")
     public String getPassword() {
+        System.out.println("-----------------------------------------------");
+        System.out.println("-----------------------------------------------");
+        System.out.println("-----------------------------------------------");
+        System.out.println("-----------------------------------------------");
         return password;
     }
 
@@ -75,11 +81,11 @@ public class UserDto {
         this.activeStatus = activeStatus;
     }
 
-    public OptField<UserDto> getFriend() {
+    public OptField<UserDtoJava> getFriend() {
         return friend;
     }
 
-    public void setFriend(OptField<UserDto> friend) {
+    public void setFriend(OptField<UserDtoJava> friend) {
         this.friend = friend;
     }
 }

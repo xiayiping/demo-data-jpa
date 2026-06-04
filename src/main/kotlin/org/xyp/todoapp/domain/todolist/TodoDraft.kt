@@ -6,6 +6,7 @@ import jakarta.persistence.*
 import org.hibernate.annotations.CreationTimestamp
 import org.hibernate.annotations.UpdateTimestamp
 import org.xyp.todoapp.core.enums.ActiveStatus
+import org.xyp.todoapp.core.idgen.IdGenerator
 import java.time.LocalDateTime
 
 @Entity
@@ -32,8 +33,8 @@ class TodoDraft(
     var priority: TodoTaskPriority = TodoTaskPriority.MEDIUM,
 
     val assignerId: String,
-    val assigneeId: String,
     val assignerType: String,
+    val assigneeId: String,
     val assigneeType: String,
 
     @CreationTimestamp
@@ -45,7 +46,6 @@ class TodoDraft(
     var optimisticVersion: Long? = null,
 ) {
     companion object {
-        const val ID_KEY: String = "org.xyp.todoapp.domain.todolist.TodoDraft"
     }
 }
 
@@ -53,4 +53,13 @@ class TodoDraft(
 data class TodoDraftId(
     @JsonValue
     val id: Long
-)
+) {
+    companion object {
+
+        private const val ID_KEY: String = "org.xyp.todoapp.domain.todolist.TodoDraft"
+
+        fun create(idGenerator: IdGenerator<Long>): TodoDraftId {
+            return TodoDraftId(idGenerator.generate(ID_KEY))
+        }
+    }
+}
