@@ -14,13 +14,17 @@ class User(
     @EmbeddedId
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     val id: UserId,
+
     var username: String? = null,
+
     var password: String? = null,
-    @Enumerated(jakarta.persistence.EnumType.STRING)
+
+    @Enumerated(EnumType.STRING)
     var status: ActiveStatus? = null,
 
     @CreationTimestamp
     var createdAt: LocalDateTime? = null,
+
     @UpdateTimestamp
     var updatedAt: LocalDateTime? = null,
 

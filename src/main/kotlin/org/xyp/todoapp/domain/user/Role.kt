@@ -18,7 +18,7 @@ class Role(
 
     var name: String? = null,
 
-    @Enumerated(jakarta.persistence.EnumType.STRING)
+    @Enumerated(EnumType.STRING)
     var status: ActiveStatus? = null,
 
     @CreationTimestamp
