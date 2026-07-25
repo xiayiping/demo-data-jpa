@@ -35,8 +35,10 @@ class ObjectMapperConfig(
             logger.info("ObjectMapper Config initialized ... ...")
             builder.addModule(optFieldModule())
             builder.annotationIntrospector(object : JacksonAnnotationIntrospector() {
-                override fun findSerializer(config: MapperConfig<*>,
-                                            a: Annotated): Any? {
+                override fun findSerializer(
+                    config: MapperConfig<*>,
+                    a: Annotated
+                ): Any? {
                     if (a.hasAnnotation(MaskedData::class.java)) {
                         val annotation = a.getAnnotation(MaskedData::class.java)
                         return MaskedDataSerializer(annotation)

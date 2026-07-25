@@ -1,12 +1,16 @@
 package org.xyp.todoapp.core.json.impl
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.xyp.todoapp.core.json.OptField
-import org.xyp.todoapp.core.json.impl.OptFieldJsonSerializer.Companion.logger
 import tools.jackson.core.JsonGenerator
 import tools.jackson.databind.SerializationContext
 import tools.jackson.databind.ValueSerializer
 
 class OptFieldJson3Serializer : ValueSerializer<OptField<*>>() {
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(OptFieldJson3Serializer::class.java)
+    }
     override fun serialize(value: OptField<*>?,
                            gen: JsonGenerator,
                            ctxt: SerializationContext) {

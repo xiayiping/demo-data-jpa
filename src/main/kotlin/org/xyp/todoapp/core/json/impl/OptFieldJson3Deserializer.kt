@@ -1,5 +1,7 @@
 package org.xyp.todoapp.core.json.impl
 
+import org.slf4j.Logger
+import org.slf4j.LoggerFactory
 import org.springframework.boot.jackson.ObjectValueDeserializer
 import org.xyp.todoapp.core.json.OptField
 import tools.jackson.core.JsonParser
@@ -11,6 +13,9 @@ import tools.jackson.databind.ValueDeserializer
 
 class OptFieldJson3Deserializer() :
     ObjectValueDeserializer<OptField<*>>() {
+    companion object {
+        val logger: Logger = LoggerFactory.getLogger(OptFieldJson3Deserializer::class.java)
+    }
 
     lateinit var valueType: JavaType
 
