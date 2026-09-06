@@ -3,6 +3,7 @@ package org.xyp.todoapp.core.objtransfer;
 import org.jspecify.annotations.NonNull;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.util.StringUtils;
 import org.xyp.todoapp.core.json.JsonHelper;
 
 import java.util.*;
@@ -31,12 +32,68 @@ public class MapTransfer {
 
     private static Object transferMap(@NonNull Object context, @NonNull Map<String, ?> configMap) {
         if (configMap.containsKey(EXT_ARR_KEY)) {
-
+            final var collection = extractProperty(context, (String) configMap.get(EXT_ARR_KEY));
+            return expandMapToList(context, collection, configMap);
         } else {
             final var rootContext = findRootContext(context, configMap);
             return transferMapWithContext(rootContext, configMap);
         }
-        return null;
+    }
+
+    private static Object expandMapToList(@NonNull Object context, Object collection, Map<String, ?> configMap) {
+        if (collection instanceof String cStr && !StringUtils.hasText(cStr)) {
+            return List.of();
+        }
+
+        final Iterator<?> iterator = createIterator(collection);
+        final var range = Optional.ofNullable(configMap.get(EXT_RANGE_KEY))
+            .map(r -> {
+                final var split = r.toString().split(",");
+                return new int[]{Integer.parseInt(split[0]), Integer.parseInt(split[1])};
+            })
+            .orElse(new int[]{0, Integer.MAX_VALUE});
+
+        int i = 0;
+        List<Map.Entry<Integer, Object>> list = new ArrayList<>();
+        while (iterator.hasNext() && i < range[1]) {
+            final var next = iterator.next();
+            if (i >= range[0]) {
+                list.add(new AbstractMap.SimpleEntry<>(i, next));
+            }
+            i++;
+        }
+
+        final var filter = configMap.get(EXT_ARR_FILTER);
+        return list.stream()
+            .map(ent -> Map.of(
+                "parent", context,
+                "item", ent.getValue(),
+                "idx", ent.getKey(),
+                "iNum", ent.getKey() + 1
+            ))
+            .filter(map -> filterListItem(map, filter))
+            .map(map -> transferMapWithContext(map, configMap))
+            .toList();
+
+    }
+
+    private static boolean filterListItem(Map<String, Object> map, Object filter) {
+        if (null == filter) {
+            logger.debug("there's no filter provided, return pass.");
+            return true;
+        }
+
+        final var checked = PropertyTransfer.parseExpression(map, filter.toString());
+        if (checked instanceof Boolean b) {
+            return b;
+        }
+        try {
+            return Boolean.parseBoolean(checked.toString());
+        } catch (Exception e) {
+            logger.warn("exception while checking [{}]", filter);
+            logger.warn("return passed for [{}]", e.getMessage());
+            return true;
+        }
     }
 
     private static Map<String, ?> transferMapWithContext(Object rootContext, @NonNull Map<String, ?> configMap) {
@@ -74,7 +131,25 @@ public class MapTransfer {
     }
 
     private static Object transferList(@NonNull Object rootContext, @NonNull List<?> innerList) {
-        return null;
+
+        return innerList.stream()
+            .map(item -> {
+                if (item instanceof Map<?, ?> map) {
+                    return transferMap(rootContext, (Map<String, ?>) map);
+                } else if (item instanceof List<?> list) {
+                    return transferList(rootContext, list);
+                } else if (item instanceof String string) {
+                    return PropertyTransfer.parseExpression(rootContext, string);
+                }
+                return item;
+            }).toList();
+    }
+
+    private static Iterator<?> createIterator(@NonNull Object rootContext) {
+        if (rootContext instanceof Iterable<?> iterable) {
+            return iterable.iterator();
+        }
+        throw new IllegalArgumentException("" + rootContext.getClass() + " is not an iterable");
     }
 
     private static Object findRootContext(@NonNull Object context, @NonNull Map<String, ?> configMap) {

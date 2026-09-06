@@ -69,7 +69,7 @@ public class PropertyUtil {
             if (null == nextObject) {
                 return null;
             }
-            return nextSplitter < 0 ? nextObject : getPropertyValue(nextObject, property, firstProperty, nextSplitter);
+            return nextSplitter < 0 ? nextObject : getProperty(nextObject, property.substring(nextSplitter + 1));
         } else {
             return processNonMap(object, property, firstProperty, nextSplitter);
         }
@@ -119,7 +119,7 @@ public class PropertyUtil {
                 return null;
             }
             default -> throw new IllegalArgumentException("expect iterable, but found " +
-                    Optional.ofNullable(items).map(Object::getClass).map(Class::getName).orElse(null));
+                Optional.ofNullable(items).map(Object::getClass).map(Class::getName).orElse(null));
         }
     }
 
